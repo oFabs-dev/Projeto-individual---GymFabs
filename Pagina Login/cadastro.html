@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+  </head>
+  <body>
+    <label for="ipt_nome">Nome</label>
+    <input type="text" id="ipt_nome" /> <br />
+
+    <label for="ipt_email">Email</label>
+    <input type="text" id="ipt_email" oninput="validarEmail()" /> <br />
+
+    <div id="div_validEmail"></div>
+
+    <label for="ipt_senha">Senha</label>
+    <input type="text" id="ipt_senha" oninput="validarSenha()" /> <br />
+
+    <div id="div_MostrarForça"></div>
+
+    <label for="ipt_chkSenha">Confirmar Senha</label>
+    <input type="text" id="ipt_chkSenha" />
+
+    <button onclick="cadastrar()">Cadastrar</button>
+  </body>
+</html>
+
+<script>
+ 
+  // validação de senha
+
+let validoSenha = 0
+
+  function validarSenha() {
+    let senha = ipt_senha.value;
+    let chkSenha = ipt_chkSenha.value;
+    let pontoSenha = 0
+
+
+    //verificar se tem numero
+
+    if (
+      (senha.includes('0') ||
+        senha.includes('1') ||
+        senha.includes('2') ||
+        senha.includes('3') ||
+        senha.includes('4') ||
+        senha.includes('5') ||
+        senha.includes('6') ||
+        senha.includes('7') ||
+        senha.includes('8') ||
+        senha.includes('9')) == true
+    ) {
+      pontoSenha++;
+    }
+
+    // verificar se tem 8 letras ou mais
+
+    if (senha.length >= 8) {
+      pontoSenha++;
+    }
+
+    //verificar se tem letra miniscula e maiscula
+
+    if (senha != senha.toUpperCase() && senha != senha.toLowerCase())
+      pontoSenha++;
+
+    //verificar se tem letra caracteres especias
+
+    if (
+      (senha.includes("!") ||
+        senha.includes("@") ||
+        senha.includes("#") ||
+        senha.includes("$") ||
+        senha.includes("%") ||
+        senha.includes("&") ||
+        senha.includes("*")) == true
+    ) {
+      pontoSenha++;
+    }
+
+
+    // verificação de pontos de força da senha
+
+    if (pontoSenha == 1) {
+      div_MostrarForça.innerHTML = `<span style="color: red">FRACA</span>`;
+      validoSenha = false
+    } else if (pontoSenha == 2) {
+      div_MostrarForça.innerHTML = ` <span style="color: orange">MEDIA</span>`;
+      validoSenha = false
+    } else if (pontoSenha == 3) {
+      div_MostrarForça.innerHTML = `<span style="color: green">FORTE</span>`;
+      validoSenha = true
+    } else if (pontoSenha == 4){
+      validoSenha = true
+      div_MostrarForça.innerHTML = `<span style="color: purple">MONSTRA</span>`;
+    }
+
+    // deixar vazio caso na tenha nada
+
+    if(senha == ``){
+       div_MostrarForça.innerHTML = ` `
+    }
+
+  }
+
+ // validação de email
+
+
+  let validoEmail = 0
+
+  function validarEmail(){
+  let email = ipt_email.value
+
+    if(email.includes('@') && email.includes('.')){
+      div_validEmail.innerHTML = 'VALIDO'
+      validoEmail = true
+    }else{
+      div_validEmail.innerHTML = 'INVALIDO'
+      validoEmail = false
+    }
+
+
+    if(email == ``){
+       div_validEmail.innerHTML = ` `
+    }
+      
+  }
+
+
+  function cadastrar(){
+
+    if(validoSenha == true && validoEmail == true){
+      alert(`cadastrado`)
+    }else{
+      alert(`verifique os campos`)
+    }
+   
+  }
+
+</script>
