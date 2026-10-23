@@ -1,0 +1,61 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+body{
+
+background-image: url(img/Fundo\ do\ cadastro\ —\ 1920×1080\ \(Full\ HD\)@2x.png);
+background-size: cover;
+
+}
+
+main {
+
+display: flex;
+flex-direction: row;
+padding: 10rem;
+gap: 10px;
+
+
+
+}
+
+.caixa_cadastro{
+
+display: flex;
+flex-direction: column;
+width: 50%;
+gap: 4px;
+color: #C9BEDA;
+border: solid 1px #2E2240;
+border-radius: 28px;
+background-color: #120E18;
+padding: 280px 180px;
+
+
+
+
+}
+
+
+.caixa_texto{
+
+display: flex;
+flex-direction: column;
+width: 50%;
+gap: 4px;
+color: #C9BEDA;
+border: solid 1px #2E2240;
+border-radius: 28px;
+background-color: #120E18;
+padding: 280px 180px;
+
+
+
+
+}
+
+
