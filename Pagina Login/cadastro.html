@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   </head>
   <body>
 
@@ -17,28 +18,42 @@
 
     <div class="caixa_texto">
 
+    
+    <span class="iconeAreaDoAtleta">AREA DO ATLETA</span>
+    <h1>Bora começar <span class="destaque"> o shape</span></h1>
+    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone"> Crie sua conta em menos de um minuto e faça parte do time GymFabs.</p>
+    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone">Jogue o quiz e veja seu resultado na dashboard</p>
+    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone">Consulte seu IMC quando quiser</p>
+    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone">Descubra minha história na musculação</p>
 
 
     </div>
 
 
     <div class="caixa_cadastro">
+
+      <div class="campo">
     <label for="ipt_nome">Nome</label>
-    <input type="text" id="ipt_nome" /> <br />
+    <input type="text" id="ipt_nome" placeholder="Como você quer ser chamado?"/> 
+     </div>
 
+      <div class="campo">
     <label for="ipt_email">Email</label>
-    <input type="email" id="ipt_email" oninput="validarEmail()" /> <br />
-
+    <input type="email" id="ipt_email" oninput="validarEmail()" placeholder="Digite seu email" /> 
+</div>
     <div id="div_validEmail"></div>
 
+     <div class="campo">
     <label for="ipt_senha">Senha</label>
-    <input type="password" id="ipt_senha" oninput="validarSenha()" /> <br />
+    <input type="password" id="ipt_senha" oninput="validarSenha()" placeholder="Crie uma senha"/>
+    </div>
 
     <div id="div_MostrarForça"></div>
 
+     <div class="campo">
     <label for="ipt_chkSenha">Confirmar Senha</label>
-    <input type="password" id="ipt_chkSenha" />
-
+    <input type="password" id="ipt_chkSenha" placeholder="Repita a senha" />
+</div>
     <button onclick="cadastrar()">Cadastrar</button>
     </div>
 
