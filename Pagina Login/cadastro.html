@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   </head>
-  <body>
+  <body class="pagina_cadastro">
 
 
 
@@ -53,7 +53,7 @@
 
       <div class="campo">
     <label for="ipt_email">E-mail</label>
-    <input type="email" id="ipt_email" oninput="validarEmail()" placeholder="Digite seu email" /> 
+    <input type="email" id="ipt_email" oninput="validarEmail()" placeholder="Digite seu email" required />
 </div>
     <div id="div_validEmail"></div>
 
@@ -112,7 +112,7 @@
 
     //verificar se tem letra caracteres especias
 
-    if (/[^A-Za-z0-9]/.test(senha)) {
+    if (/[^A-Za-z0-9\s]/.test(senha)) {
       pontoSenha++;
     }
 
@@ -143,6 +143,7 @@
   function validarEmail() {
     let email = ipt_email.value;
 
+
     if (ipt_email.checkValidity() && email.split('@')[1].includes('.')) {
       div_validEmail.innerHTML = "VALIDO";
       validoEmail = true;
@@ -155,8 +156,12 @@
   function cadastrar() {
     let senha = ipt_senha.value;
     let chkSenha = ipt_chkSenha.value;
+    let nome = ipt_nome.value;
 
-    if (
+
+
+
+    if (nome.trim() !== "" &&
       validoSenha == true &&
       validoEmail == true &&
       senha == chkSenha &&
