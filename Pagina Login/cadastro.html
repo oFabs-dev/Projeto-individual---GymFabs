@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,28 +9,42 @@
   </head>
   <body>
 
-    <header>
 
 
-    </header>
+<header>
+  <span class="marca"> <img src="img/gymfabs_logo_simbolo_roxo.png" alt="">GymFabs</span>
+  <a href="#" class="link_voltar">
+    <i class="fa-solid fa-arrow-left"></i> Voltar ao início
+  </a>
+</header>
+
 
     <main>
 
     <div class="caixa_texto">
 
     
-    <span class="iconeAreaDoAtleta">AREA DO ATLETA</span>
-    <h1>Bora começar <span class="destaque"> o shape</span></h1>
-    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone"> Crie sua conta em menos de um minuto e faça parte do time GymFabs.</p>
-    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone">Jogue o quiz e veja seu resultado na dashboard</p>
-    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone">Consulte seu IMC quando quiser</p>
-    <p> <img src="img/check-caixa.png" alt="" class="beneficiosIcone">Descubra minha história na musculação</p>
+    <span class="iconeAreaDoAtleta">ÁREA DO ATLETA</span>
+    <h1>Bora começar <span class="destaque">o shape</span></h1>
 
+    <p class="subtitulo">Crie sua conta em menos de um minuto e faça parte do time GymFabs.</p>
+
+    <ul class="beneficios">
+   <li><img src="img/check-caixa.png" alt="" class="beneficiosIcone">Jogue o IronGoat e veja seu resultado na dashboard</li>
+  <li><img src="img/check-caixa.png" alt="" class="beneficiosIcone">Consulte seu IMC quando quiser</li>
+  <li><img src="img/check-caixa.png" alt="" class="beneficiosIcone">Descubra minha história na musculação</li>
+    </ul>
 
     </div>
 
-
     <div class="caixa_cadastro">
+
+ <img src="img/mascote_cadastro_olhando@4x.png" alt="" class="mascote">
+
+    <div class="abas">
+        <a href="login.html" class="aba">Entrar</a>
+        <a href="#" class="aba ativa">Criar conta</a>
+     </div>
 
       <div class="campo">
     <label for="ipt_nome">Nome</label>
@@ -38,7 +52,7 @@
      </div>
 
       <div class="campo">
-    <label for="ipt_email">Email</label>
+    <label for="ipt_email">E-mail</label>
     <input type="email" id="ipt_email" oninput="validarEmail()" placeholder="Digite seu email" /> 
 </div>
     <div id="div_validEmail"></div>
@@ -54,7 +68,13 @@
     <label for="ipt_chkSenha">Confirmar Senha</label>
     <input type="password" id="ipt_chkSenha" placeholder="Repita a senha" />
 </div>
-    <button onclick="cadastrar()">Cadastrar</button>
+
+<label>
+  <input type="checkbox" id="chk_mostrar" onclick="mostrarSenhas()"> Mostrar senhas
+</label>
+
+    
+    <button onclick="cadastrar()">Criar minha conta</button>
     </div>
 
 
@@ -100,7 +120,7 @@
 
     if (pontoSenha == 0) {
       validoSenha = false;
-      div_MostrarForça.innerHTML = ` `;
+      div_MostrarForça.innerHTML = ``;
     } else if (pontoSenha == 1) {
       div_MostrarForça.innerHTML = `<span style="color: red">FRACA</span>`;
       validoSenha = false;
@@ -147,4 +167,15 @@
       alert(`verifique os campos`);
     }
   }
+
+function mostrarSenhas() {
+  if (chk_mostrar.checked) {
+    ipt_senha.type = 'text';
+    ipt_chkSenha.type = 'text';
+  } else {
+    ipt_senha.type = 'password';
+    ipt_chkSenha.type = 'password';
+  }
+}
+
 </script>

@@ -19,17 +19,52 @@
 body {
   background-image: url(img/Fundo\ do\ cadastro\ —\ 1920×1080\ \(Full\ HD\)@2x.png);
   background-size: cover;
+  background-position: center;
   font-family:"Space Grotesk", sans-serif;;
 }
+
+header {
+display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "New Rocker", system-ui;
+  font-size: 30px;
+  color: var(--texto);
+}
+
+.marca img{
+width: 48px;
+
+}
+
+.link_voltar{
+text-decoration: none;
+color: var(--texto-suave)
+
+}
+
+.link_voltar:hover {
+  color: var(--roxo-claro);
+}
+
 
 main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   flex-direction: row;
-  padding: 40px 24px;
+  padding: 0 24px;
   gap: 64px;
 }
 
@@ -38,19 +73,22 @@ input[type="text"],
 input[type="password"] {
   /* width: 300px; */
   width: 100%;
-  padding: 16px 20px;
+  padding: 10px 16px;
   border: solid #2e2240 1px;
   border-radius: 14px;
   background-color: #08070a;
   color: #f4f0fa;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 label {
     font-weight: 600;
     color: var(--texto);
+    font-size: 14px;
 }
+
+
 
 .campo {
     display: flex;
@@ -63,19 +101,62 @@ label {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 20px;
+  max-width: 460px;
+  gap: 12px;
   color: #c9beda;
   border: solid 1px #2e2240;
   border-radius: 28px;
   background-color: #120e18;
-  padding: 40px 20px;
+  padding: 20px 28px;
+  position: relative;
+  margin-top: 110px;
+}
+
+
+.mascote{
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+width: 170px;
+}
+
+.abas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
+  background-color: var(--input);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+}
+
+
+.aba {
+  padding: 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+
+.aba.ativa {
+  background-color: var(--roxo);
+  color: white;
+}
+
+
+
+
+input::placeholder {
+  color: #6f6486;
 }
 
 .caixa_texto {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  gap: 8px;
+  flex: 1;
+  gap: 24px;
   color: #c9beda;
 }
 
@@ -85,7 +166,7 @@ label {
   font-family: "New Rocker", system-ui;
   font-weight: 400;
   font-style: normal;
-  font-size: 100px;
+  font-size: 72px;
   line-height: 1.1;
 }
 
@@ -94,8 +175,30 @@ label {
 }
 
 .beneficiosIcone {
-  width: 20px;
+  width: 38px;
 }
+
+.subtitulo{
+max-width: 500px;
+font-size: 20px;
+line-height: 1.5;
+}
+
+
+.beneficios {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.beneficios li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  color: var(--texto);
+}
+
 
 .iconeAreaDoAtleta{
     align-self: flex-start;
@@ -110,13 +213,15 @@ label {
 
 button {
 
-padding: 18px;
+padding: 12px;
 border: none;
 border-radius: 999px;
 background: var(--roxo);
 color: white;
 font-weight: 700;
-font-size: 18px;
+font-size: 16px;
 cursor: pointer;
+font-family: inherit;
 }
+
 
