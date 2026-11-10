@@ -157,9 +157,7 @@
     let senha = ipt_senha.value;
     let chkSenha = ipt_chkSenha.value;
     let nome = ipt_nome.value;
-
-
-
+    let email = ipt_email.value;
 
     if (nome.trim() !== "" &&
       validoSenha == true &&
@@ -167,11 +165,28 @@
       senha == chkSenha &&
       senha.length >= 8
     ) {
-      alert(`cadastrado`);
-    } else {
+      fetch("/usuarios/cadastrar", {          // 1. o endereço
+  method: "POST",                       // 2. o tipo de entrega: "estou mandando coisas"
+  headers: { "Content-Type": "application/json" },   // 3. "a carta está em formato JSON"
+  body: JSON.stringify({                // 4. o que vai dentro da carta
+    nomeServer: nome,
+    emailServer: email,
+    senhaServer: senha
+  })
+}).then(function (resposta) {           // 5. quando a resposta voltar...
+  if (resposta.ok) {
+    alert("Conta criada!");
+    window.location = "login.html";
+  } else {
+    alert("Deu erro no cadastro");
+  }
+  })
+    }else {
       alert(`verifique os campos`);
     }
   }
+
+
 
 function mostrarSenhas() {
   if (chk_mostrar.checked) {
