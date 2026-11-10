@@ -26,7 +26,8 @@
         <h1>Bem vindo de volta,<span class="destaque"> monstro</span></h1>
 
         <p class="subtitulo">
-          Entre e aproveite cada momento da minha historia na academia, aproveite o minigame IronGoat.
+          Entre e aproveite cada momento da minha historia na academia,
+          aproveite o minigame IronGoat.
         </p>
 
         <ul class="beneficios">
@@ -101,7 +102,7 @@
   let validoSenha = 0;
 
   function validarSenha() {
-    validoSenha = ipt_senha.value !== ""
+    validoSenha = ipt_senha.value !== "";
   }
 
   // validação de email
@@ -122,15 +123,30 @@
 
   function entrar() {
     let senha = ipt_senha.value;
-   let email = ipt_email.value;
+    let email = ipt_email.value;
 
-    if (
-      validoSenha == true &&
-      validoEmail == true
-    ) {
-      alert(`Entrou`);
+    if (validoSenha == true && validoEmail == true) {
+      fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          emailServer: email,
+          senhaServer: senha,
+        }),
+      }).then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (json) {
+            sessionStorage.setItem("ID_USUARIO", json.id);
+            sessionStorage.setItem("NOME_USUARIO", json.nome);
+            sessionStorage.setItem("EMAIL_USUARIO", json.email);
+            window.location = "../Index/index.html";
+          });
+        } else {
+          alert("E-mail ou senha errados");
+        }
+      });
     } else {
-      alert(`verifique os campos`);
+      alert("verifique os campos");
     }
   }
 

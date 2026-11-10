@@ -338,6 +338,7 @@ align-items: start;
   display: grid;
   grid-template-columns: repeat(3, 1fr);  /* 3 colunas iguais */
   gap: 16px;
+  margin-bottom: 50px;
 }
 
 .alimento-grade img {
@@ -346,6 +347,20 @@ align-items: start;
   height: auto;
 }
 
+
+
+.treino-grade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colunas iguais */
+  gap: 16px;
+
+}
+
+.treino-grade img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 /* ===================== Inspiraçoes ===================== */
 
