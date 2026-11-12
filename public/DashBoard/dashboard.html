@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <div id="div_topo"></div>
+
+    <section class="kpis">
+      <div class="card rotulo valor nota destaque">
+        <p class="rotulo">Recorde</p>
+        <p class="valor">4.820</p>
+        <p class="nota">▲ +320 hoje</p>
+      </div>
+      <div class="card rotulo valor nota">
+        <p class="rotulo">Média Score</p>
+        <p class="valor">4.820</p>
+        <p class="nota">▲ +320 hoje</p>
+      </div>
+      <div class="card rotulo valor nota">
+        <p class="rotulo">Partidas</p>
+        <p class="valor">4.820</p>
+        <p class="nota">▲ +320 hoje</p>
+      </div>
+      <div class="card rotulo valor nota">
+        <p class="rotulo">Tempo jogado</p>
+        <p class="valor">4.820</p>
+        <p class="nota">▲ +320 hoje</p>
+      </div>
+    </section>
+
+    <section class="conquistas">
+      <div id="div"></div>
+      <div id="div"></div>
+      <div id="div"></div>
+      <div id="div"></div>
+      <div id="div"></div>
+      <div id="div"></div>
+    </section>
+
+    <section class="graficos">
+      <div class="card caixaGrafico">
+        <canvas id="graficoEvolucao"></canvas>
+      </div>
+      <div class="card caixaGrafico">
+        <canvas id="graficoMelhores"></canvas>
+      </div>
+      <div class="card caixaGrafico"><canvas id="graficoPerde"></canvas></div>
+    </section>
+  </body>
+</html>
+<script>
+  const ctxEvolucao = document.getElementById("graficoEvolucao");
+  const ctxMelhores = document.getElementById("graficoMelhores");
+  const ctxPerde = document.getElementById("graficoPerde");
+
+  Chart.defaults.color = "#c9beda"; // cor de todos os textos
+  Chart.defaults.borderColor = "#2e2240"; // cor das linhas de grade
+
+  new Chart(ctxEvolucao, {
+    type: "line",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "Score",
+          data: [1200, 1800, 1500, 2600, 4820],
+          borderColor: "#c77dff", // linha roxa clara
+          backgroundColor: "rgba(199, 125, 255, 0.2)", // cor da área embaixo
+          fill: true, // preenche a parte da baixo da linha
+        },
+        {
+          label: "Sua média",
+          data: [1950, 1950, 1950, 1950, 1950],
+          borderColor: "#a99bbf",
+          borderDash: [6, 6], // tracejado (comprimento do traço x tamanho do espaço)
+          pointRadius: 0, // sem bolinhas
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false, // "pode esticar para caber na div"
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  new Chart(ctxMelhores, {
+    type: "bar",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false, // "pode esticar para caber na div"
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  new Chart(ctxPerde, {
+    type: "bar",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false, // "pode esticar para caber na div"
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+</script>

@@ -18,7 +18,7 @@
         <a href="#inspiracoes">Inspirações</a>
       </nav>
 
-      <div class="botoes-usuario">
+      <div class="botoes-usuario" id="div_botoes">
         <a href="../Pagina Login/login.html" class="btn">Entrar</a>
         <a href="../Pagina Login/cadastro.html" class="btn btn-primario"
           >Criar conta</a
@@ -37,7 +37,7 @@
           </p>
 
           <div class="hero-botoes">
-            <a href="../Jump-goat-home/JumpGoat-home.html" class="btn btn-primario">🕹️ Jogar Xlurp Attack </a>
+            <a id="liberar" onclick="PrecisaLogar()" class="btn btn-primario">🕹️ Jogar JumpGoat </a>
             <a href="../CalculadoraIMC/calculadoraIMC.html" class="btn imc"
               >➗ Calcular meu IMC</a
             >
@@ -215,3 +215,34 @@
     </main>
   </body>
 </html>
+
+<script>
+
+let nome = sessionStorage.getItem("NOME_USUARIO")
+
+
+if(nome != null){
+div_botoes.innerHTML = `
+  <span>Olá, ${nome}!</span>
+  <button class="btn btn-primario" onclick="sair()">Sair</button>
+`;
+}
+
+function sair() {
+  sessionStorage.clear();
+  window.location = "../Pagina Login/login.html";
+
+}
+
+
+function PrecisaLogar() {
+  if (nome != null) {
+    window.location = "../Jump-goat-home/JumpGoat-home.html";
+  } else {
+    alert(`Precisa logar para jogar JumpGoat`);
+  }
+}
+
+
+
+</script>

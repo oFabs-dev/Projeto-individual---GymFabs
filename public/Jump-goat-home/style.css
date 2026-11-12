@@ -41,7 +41,11 @@ header img{
 width: 170px;
 }
 
-a{
+.conta a{
+color: var(--texto-apagado);
+}
+
+.play a{
 
 text-decoration: none;
 color: var(--texto-apagado);
@@ -109,5 +113,67 @@ padding: 10px 20px;
   gap: 10px;
 
 }
+
+.quadrinho img{
+
+  width: 80%;
+  margin-left: 130px;
+  
+
+
+
+
+}
+
+.quadrinho {
+background: linear-gradient( var(--fundo-secao),var(--fundo));
+}
+
+
+.moral{
+display: flex;
+padding: 120px 112px;
+justify-content: center;
+background: linear-gradient(var(--fundo), var(--fundo-secao))
+}
+
+
+.frase {
+  max-width: 800px;
+  text-align: center;
+}
+
+.frase p {
+  margin-top: 24px;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--texto-apagado);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.frase span {
+  display: block;
+  color: var(--roxo-claro);
+}
+
+.titulo-secao {
+  margin-bottom: 64px;
+}
+
+.titulo-secao h2 {
+  font-family: "New Rocker", system-ui;
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--texto);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.titulo-secao p {
+  color: var(--roxo-claro);
+  font-size: 16px;
+}
+
 
 

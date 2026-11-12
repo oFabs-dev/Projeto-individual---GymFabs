@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=New+Rocker&family=Space+Grotesk:wght@300..700&display=swap");
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+
+body {
+
+background-color: var(--fundo);
+color: var(--texto);
+font-family: "Space Grotesk", sans-serif;
+
+}
+
+}
+
+:root {
+  --roxo: #7b2cbf; /* botões e destaques */
+  --roxo-claro: #c77dff; /* links e textos em destaque */
+  --roxo-escuro: #3c096c; /* sombras e gradientes */
+
+  --fundo: #08070a; /* fundo da página */
+  --fundo-secao: #120a1c; /* seções alternadas */
+  --fundo-card: #1a1224; /* cards */
+  --borda: #2e2240; /* bordas dos cards */
+
+  --texto: #f4f0fa; /* títulos e texto principal */
+  --texto-secundario: #c9beda; /* parágrafos */
+  --texto-apagado: #a99bbf; /* legendas e detalhes */
+}
+
+
+.card{
+
+background-color: var(--fundo-card);
+border: solid 1px var(--borda);
+border-radius: 22px;
+padding: 24px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--texto-apagado);
+
+}
+
+
+.kpis{
+
+display: grid;
+grid-template-columns: (4, 1fr);
+
+}
+
+.rotulo{
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: var(--texto-apagado);
+}
+
+.valor{
+   font-family: "New Rocker";  
+  font-size: 46px;
+}
+
+.nota{
+    font-size: 14px;
+    color: var(--texto-apagado);
+}
+
+.destaque {
+  border-color: var(--roxo);
+  box-shadow: 0 0 40px rgba(123, 44, 191, 0.3);   /* o brilho roxo */
+}
+
+ /* lê-se "o .valor que estiver dentro de um .destaque */
+.destaque .valor { 
+  color: var(--roxo-claro);   
+}
+
+.graficos{
+grid-template-columns: 1.55fr  1fr;
+gap: 20px;
+}
+
+.caixaGrafico{
+height: 250px;
+}
