@@ -8,50 +8,148 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header></header>
+    <header>
+      <span class="marca">
+        <img
+          src="../Pagina Login/img/gymfabs_logo_simbolo_roxo.png"
+          alt=""
+        />GymFabs</span
+      >
+      <a href="../Jump-goat-home/JumpGoat-home.html" class="link_voltar">
+        ← Voltar ao início
+      </a>
+    </header>
 
     <div id="div_topo"></div>
 
+    <h1>Olá, <span>Fabs</span></h1>
+
     <section class="kpis">
-      <div class="card rotulo valor nota destaque">
+      <div class="card destaque">
         <p class="rotulo">Recorde</p>
         <p class="valor">4.820</p>
-        <p class="nota">▲ +320 hoje</p>
+        <p class="nota"><b>▲ +320</b> hoje</p>
       </div>
-      <div class="card rotulo valor nota">
-        <p class="rotulo">Média Score</p>
-        <p class="valor">4.820</p>
-        <p class="nota">▲ +320 hoje</p>
+      <div class="card">
+        <p class="rotulo">Média de score</p>
+        <p class="valor">1.950</p>
+        <p class="nota"><b>▲ 12%</b> na semana</p>
       </div>
-      <div class="card rotulo valor nota">
+      <div class="card">
         <p class="rotulo">Partidas</p>
-        <p class="valor">4.820</p>
-        <p class="nota">▲ +320 hoje</p>
-      </div>
-      <div class="card rotulo valor nota">
+        <p class="valor">37</p>
+        <p class="nota"><b>5</b> hoje</p>
+        </div>
+
+      <div class="card">
         <p class="rotulo">Tempo jogado</p>
-        <p class="valor">4.820</p>
-        <p class="nota">▲ +320 hoje</p>
+        <p class="valor">1h 12min</p>
+        <p class="nota">média de <b>1m57</b> por jogo</p>
       </div>
     </section>
 
-    <section class="conquistas">
-      <div id="div"></div>
-      <div id="div"></div>
-      <div id="div"></div>
-      <div id="div"></div>
-      <div id="div"></div>
-      <div id="div"></div>
+    <section class="conquistas card">
+      <div class="medalha">
+  <p class="emoji">🐐</p>
+  <p>Pegando o ritmo</p>
+  <p class="requisito">500 pontos</p>
+</div>
+<div class="medalha">
+  <p class="emoji">🔥</p>
+  <p>Aquecimento</p>
+  <p class="requisito">1.000 pontos</p>
+</div>
+<div class="medalha">
+  <p class="emoji">💪</p>
+  <p>Em forma</p>
+  <p class="requisito">3.000 pontos</p>
+</div>
+<div class="medalha">
+  <p class="emoji">🛡️</p>
+  <p>Anti-Mollux</p>
+  <p class="requisito">5.000 pontos</p>
+</div>
+<div class="medalha bloqueada">
+  <p class="emoji">⚡</p>
+  <p>Cabra de aço</p>
+  <p class="requisito">7.500 pontos</p>
+</div>
+<div class="medalha bloqueada">
+  <p class="emoji">👑</p>
+  <p>Lenda da Luna</p>
+  <p class="requisito">10.000 pontos</p>
+</div>
     </section>
 
     <section class="graficos">
-      <div class="card caixaGrafico">
-        <canvas id="graficoEvolucao"></canvas>
+      <div class="card">
+        <p class="titulo-card">Evolução do score</p>
+        <p class="subtitulo">Suas últimas 10 partidas</p>
+        <div class="caixaGrafico">
+          <canvas id="graficoEvolucao"></canvas>
+        </div>
       </div>
-      <div class="card caixaGrafico">
-        <canvas id="graficoMelhores"></canvas>
+
+      <div class="card">
+        <p class="titulo-card">Ranking</p>
+        <p class="subtitulo">Top 5 jogadores por recorde</p>
+
+  <table>
+  <tr>
+    <th>Posição</th>
+    <th>Jogador</th>
+    <th>Recorde</th>
+  </tr>
+  <tr>
+    <td>🥇</td>
+    <td>Ana</td>
+    <td>6.100</td>
+  </tr>
+  <tr>
+    <td>🥈</td>
+    <td>João</td>
+    <td>5.400</td>
+  </tr>
+  <tr class="eu">
+    <td>🥉</td>
+    <td>Fabs (você)</td>
+    <td>4.820</td>
+  </tr>
+  <tr>
+    <td>4º</td>
+    <td>Bia</td>
+    <td>4.300</td>
+  </tr>
+  <tr>
+    <td>5º</td>
+    <td>Leo</td>
+    <td>3.900</td>
+  </tr>
+
+  <!-- <tr> é uma linha inteira;
+<th> é uma casa do cabeçalho (o nome da coluna);
+<td> é uma casa comum. -->
+
+</table>
+
+        
       </div>
-      <div class="card caixaGrafico"><canvas id="graficoPerde"></canvas></div>
+
+      <div class="card">
+        <p class="titulo-card">Suas 5 melhores partidas</p>
+        <p class="subtitulo">Maiores scores e quando aconteceram</p>
+        <div class="caixaGrafico">
+          <canvas id="graficoMelhores"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="titulo-card">Onde você mais perde</p>
+        <p class="subtitulo">Partidas encerradas em cada faixa de score</p>
+        <div class="caixaGrafico">
+          <canvas id="graficoPerde"></canvas>
+        </div>
+      </div>
     </section>
   </body>
 </html>
@@ -66,26 +164,20 @@
   new Chart(ctxEvolucao, {
     type: "line",
     data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: ["Jogo 1", "Jogo 2", "Jogo 3", "Jogo 4", "Jogo 5", "Jogo 6", "Jogo 7", "Jogo 8", "Jogo 9", "Jogo 10"],
       datasets: [
         {
           label: "Score",
-          data: [1200, 1800, 1500, 2600, 4820],
+          data: [1200, 1800, 1500, 2600, 1400, 2100, 3900, 2300, 4820, 3100],
           borderColor: "#c77dff", // linha roxa clara
           backgroundColor: "rgba(199, 125, 255, 0.2)", // cor da área embaixo
           fill: true, // preenche a parte da baixo da linha
-        },
-        {
-          label: "Sua média",
-          data: [1950, 1950, 1950, 1950, 1950],
-          borderColor: "#a99bbf",
-          borderDash: [6, 6], // tracejado (comprimento do traço x tamanho do espaço)
-          pointRadius: 0, // sem bolinhas
         },
       ],
     },
     options: {
       maintainAspectRatio: false, // "pode esticar para caber na div"
+       
       scales: {
         y: {
           beginAtZero: true,
@@ -97,12 +189,13 @@
   new Chart(ctxMelhores, {
     type: "bar",
     data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: ["10/11", "08/11", "10/11", "02/11", "05/11"],
       datasets: [
         {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
+          label: "Score",
+          data: [4820, 4500, 3900, 3750, 3600],
           borderWidth: 1,
+          backgroundColor: "#7b2cbf",
         },
       ],
     },
@@ -119,12 +212,13 @@
   new Chart(ctxPerde, {
     type: "bar",
     data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: ["0–500", "500–1.000", "1.000–2.000", "2.000+"],
       datasets: [
         {
           label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
+          data: [16,10, 7,4 ],
           borderWidth: 1,
+          backgroundColor: "#7b2cbf",
         },
       ],
     },
