@@ -173,9 +173,8 @@
           <h3 class="subtitulo">Exercicios Favoritos</h3>
 
          <div class="treino-grade"> 
-            <img src="img/alimentacao-venom.png" alt="" />
-            <img src="img/alimentacao-panqueca.png" alt="" />
-            <img src="img/alimentacao-whey.png" alt="" />
+            <img src="img/puxada-alta-card-animado.png" alt="" />
+            <img src="img/crossover-card-animado.png" alt="" />
           </div>
         </div>
       </section>
@@ -211,7 +210,6 @@
           </p>
         </div>
       </section>
-
     </main>
   </body>
 </html>
@@ -219,7 +217,6 @@
 <script>
 
 let nome = sessionStorage.getItem("NOME_USUARIO")
-
 
 if(nome != null){
 div_botoes.innerHTML = `
@@ -231,9 +228,7 @@ div_botoes.innerHTML = `
 function sair() {
   sessionStorage.clear();
   window.location = "../Pagina Login/login.html";
-
-}
-
+} 
 
 function PrecisaLogar() {
   if (nome != null) {
@@ -242,7 +237,5 @@ function PrecisaLogar() {
     alert(`Precisa logar para jogar JumpGoat`);
   }
 }
-
-
 
 </script>

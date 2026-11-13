@@ -351,15 +351,19 @@ align-items: start;
 
 .treino-grade {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 colunas iguais */
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);  /* 3 colunas iguais */
+  gap: 20px;
+  margin-left: 100px;
 
 }
 
 .treino-grade img {
   display: block;
-  width: 100%;
+  width: 84%;
   height: auto;
+  border-radius: 20px;
+  border: solid 2px var(--roxo-escuro);
+  box-shadow: 5px 5px 12px var(--roxo-claro);
 }
 
 /* ===================== Inspiraçoes ===================== */
