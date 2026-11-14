@@ -17,4 +17,23 @@ CREATE TABLE usuario (
 	senha VARCHAR(50)
 );
 
+CREATE TABLE partida (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	fk_usuario INT NOT NULL,
+	score INT NOT NULL,
+	dt_partida DATETIME DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT fk_partida_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
+CREATE TABLE registro_imc (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	fk_usuario INT NOT NULL,
+	imc DECIMAL(5,2) NOT NULL,
+	dt_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT fk_imc_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
+
+
+
 

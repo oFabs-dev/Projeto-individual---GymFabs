@@ -22,7 +22,6 @@
       let score = 0;
 
       function iniciar() {
-
         // 1. Resetar tudo (para quando for jogar de novo)
         score = 0;
         div_score.innerHTML = "SCORE:0";
@@ -68,6 +67,15 @@
             luna.src = "img/lunaGameOver.gif";
 
             clearInterval(loop);
+
+            fetch("/partidas/salvar", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                idUsuarioServer: sessionStorage.getItem("ID_USUARIO"),
+                scoreServer: score,
+              }),
+            });
 
             // Luna não pode mais pular
             document.removeEventListener("keydown", pulo);
