@@ -3,58 +3,156 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Calculador IMC</title>
   </head>
   <body>
-
     <header>
-    <p>FERRAMENTA</p>
-    <h1>Calculador IMC</h1>
+      <div>
+        <p>FERRAMENTA</p>
+        <h1>Calculador <span>IMC</span></h1>
+      </div>
+      <a href="../Jump-goat-home/JumpGoat-home.html" class="voltar">← Voltar ao início</a>
     </header>
-    
- <main>
 
-    <div class="caixa_insert">
+    <main>
+      <div class="caixa_insert">
 
-    <label for="ipt_peso">Peso</label>
-    <input type="Number" placeholder="Digite seu peso (kg)" id="ipt_peso" /> 
+        <label for="ipt_peso">Peso (kg)</label>
+        <input type="number" placeholder="Digite seu peso" id="ipt_peso" />
 
-    <label for="ipt_altura">Altura</label>
-    <input type="Number" placeholder="Digite sua altura (cm)" id="ipt_altura" />
+        <label for="ipt_altura">Altura (cm)</label>
+        <input type="number" placeholder="Digite sua altura" id="ipt_altura" />
 
-    <button onclick="calcular()">Calcular IMC  →</button>
+        <button onclick="calcular()">Calcular IMC →</button>
+      </div>
 
-     </div>
+      <div class="caixa_resultado">
+        <div class="topo_resultado">
+          <div>
+            <span id="valor_imc">--</span>
+          </div>
+          <span id="selo_imc" class="selo">Sem cálculo</span>
+        </div>
 
-     <div class="caixa_resultado">
-      <p>SEU IMC</p>
+        <div class="faixas">
+          <div class="faixa abaixo" id="faixa_abaixo">Abaixo do peso<b>&lt; 18.5</b></div>
+          <div class="faixa normal" id="faixa_normal">Peso normal<b>18.5 – 24.9</b></div>
+          <div class="faixa sobrepeso" id="faixa_sobrepeso">Sobrepeso<b>25 – 29.9</b></div>
+          <div class="faixa obesidade" id="faixa_obesidade">Obesidade<b>≥ 30</b></div>
+        </div>
 
+        <div class="rodape">
+          <div>
+            <p id="comparacao">Calcule seu IMC para comparar</p>
+            <p id="mensagem_salvar"></p>
+          </div>
+          <button class="salvar" onclick="salvar()">Salvar meu IMC</button>
+        </div>
+      </div>
+    </main>
 
-      <span id="valor_imc">--</span>
+    <section>
+      <img class="aviso" src="img/aviso-atencao-maromba.png" alt="Atenção: o IMC não diferencia músculo de gordura" />
+    </section>
 
-     </div>
+    <script>
+      let idUsuario = sessionStorage.getItem("ID_USUARIO");
+      let imcAnterior = 0;
+      let imcAtual = 0;
+      let diaAnterior = "";
 
+      if (idUsuario != null) {
+        fetch(`/imc/ultimo/${idUsuario}`)
+          .then(function (resposta) {
+            return resposta.json();
+          })
+          .then(function (dados) {
+            if (dados.length > 0) {
+              imcAnterior = Number(dados[0].imc);
+              diaAnterior = `em ${dados[0].dia}`;
+              comparacao.innerHTML = `Último: <b>${imcAnterior.toFixed(2)}</b> ${diaAnterior}`;
+            }
+          });
+      }
 
+      function calcular() {
+        let altura = Number(ipt_altura.value) / 100;
+        let peso = Number(ipt_peso.value);
+        let imc = peso / altura ** 2;
 
-  </main>
+        if (peso > 0 && altura > 0) {
+          valor_imc.innerHTML = imc.toFixed(2);
+          imcAtual = Number(imc.toFixed(2));
+          mostrarClassificacao();
+          comparar();
+        } else {
+          comparacao.innerHTML = "Preencha peso e altura";
+        }
+      }
 
+      function mostrarClassificacao() {
+        faixa_abaixo.classList.remove("ativa");
+        faixa_normal.classList.remove("ativa");
+        faixa_sobrepeso.classList.remove("ativa");
+        faixa_obesidade.classList.remove("ativa");
 
-<script>
-function calcular(){
-let altura = Number(ipt_altura.value) / 100
-let peso = Number(ipt_peso.value)
-let IMC = peso / altura **2
+        if (imcAtual < 18.5) {
+          selo_imc.innerHTML = "Abaixo do peso";
+          selo_imc.style.color = "#4cc9f0";
+          faixa_abaixo.classList.add("ativa");
+        } else if (imcAtual < 25) {
+          selo_imc.innerHTML = "Peso normal";
+          selo_imc.style.color = "#52d69a";
+          faixa_normal.classList.add("ativa");
+        } else if (imcAtual < 30) {
+          selo_imc.innerHTML = "Sobrepeso";
+          selo_imc.style.color = "#ffc857";
+          faixa_sobrepeso.classList.add("ativa");
+        } else {
+          selo_imc.innerHTML = "Obesidade";
+          selo_imc.style.color = "#ff5d73";
+          faixa_obesidade.classList.add("ativa");
+        }
+      }
 
+      function comparar() {
+        let diferenca = Number((imcAtual - imcAnterior).toFixed(2));
+        let ultimo = `Último: <b>${imcAnterior.toFixed(2)}</b>`;
 
-valor_imc.innerHTML = `${IMC.toFixed(2)}`
-}
-</script>
+        if (idUsuario == null) {
+          comparacao.innerHTML = "Faça login para salvar e comparar";
+        } else if (imcAnterior == 0) {
+          comparacao.innerHTML = "Este é o seu primeiro registro";
+        } else if (diferenca < 0) {
+          comparacao.innerHTML = `${ultimo} · <b>▼ ${-diferenca}</b> você baixou`;
+        } else if (diferenca > 0) {
+          comparacao.innerHTML = `${ultimo} · <b>▲ ${diferenca}</b> você subiu`;
+        } else {
+          comparacao.innerHTML = `${ultimo} · mesmo IMC`;
+        }
+      }
 
-
-
+      function salvar() {
+        if (idUsuario == null) {
+          mensagem_salvar.innerHTML = "Faça login para salvar";
+        } else if (imcAtual == 0) {
+          mensagem_salvar.innerHTML = "Calcule seu IMC primeiro";
+        } else {
+          fetch("/imc/salvar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              idUsuarioServer: idUsuario,
+              imcServer: imcAtual,
+            }),
+          }).then(function () {
+            mensagem_salvar.innerHTML = "✓ IMC salvo!";
+            imcAnterior = imcAtual;
+            comparacao.innerHTML = `Último: <b>${imcAnterior.toFixed(2)}</b>`;
+          });
+        }
+      }
+    </script>
   </body>
 </html>
-
-
-
