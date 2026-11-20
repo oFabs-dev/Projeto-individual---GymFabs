@@ -97,3 +97,24 @@ body{
     bottom: 0px;
   }
 }
+
+
+.voltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 15px;
+  color: #f4f0fa;
+  text-decoration: none;
+  background-color: rgba(18, 14, 24, 0.8);
+  border: solid 2px #7b2cbf;
+  border-radius: 999px;
+}
+
+.voltar:hover {
+  background-color: #7b2cbf;
+}
+
+

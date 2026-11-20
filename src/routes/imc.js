@@ -7,8 +7,8 @@ router.post("/salvar", function (req, res) {
   imcController.salvar(req, res);
 });
 
-router.get("/ultimo/:idUsuario", function (req, res) {
-  imcController.buscarUltimo(req, res);
+router.get("/ficha/:idUsuario", function (req, res) {
+  imcController.buscarFicha(req, res);
 });
 
 module.exports = router;

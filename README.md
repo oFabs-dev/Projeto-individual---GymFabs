@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/readme/banner.svg" alt="GymFabs — Projeto Individual SPTech" width="100%">
+<img src="public/assets/readme/banner.svg" alt="GymFabs — Projeto Individual SPTech" width="100%">
 
 <br>
 
@@ -14,7 +14,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-08070A?style=for-the-badge&logo=nodedotjs&logoColor=C77DFF)
 ![MySQL](https://img.shields.io/badge/MySQL-08070A?style=for-the-badge&logo=mysql&logoColor=C77DFF)
 
-**[Sobre](#-sobre)** · **[Funcionalidades](#-funcionalidades)** · **[Tecnologias](#-tecnologias)** · **[Como rodar](#-como-rodar)** · **[Autor](#-autor)**
+**[Sobre](#-sobre)** · **[Funcionalidades](#-funcionalidades)** · **[JumpGoat](#-jumpgoat)** · **[Banco de dados](#-banco-de-dados)** · **[Tecnologias](#-tecnologias)** · **[Como rodar](#-como-rodar)** · **[Autor](#-autor)**
 
 </div>
 
@@ -24,10 +24,12 @@
 
 A **GymFabs** é um site sobre o meu hobby favorito, a **musculação**, desenvolvido como **Projeto Individual** na **SPTech — São Paulo Tech School**.
 
-Nele eu conto como a musculação entrou na minha vida, o que ela me ensinou e quem me inspira. O site também tem um **quiz** para testar o que você sabe de treino, uma página com os meus **favoritos** (músicas, alimentação e ficha de treino) e uma **calculadora de IMC**. Quem quiser pode criar uma conta e entrar com **cadastro e login**.
+Na página inicial eu conto como a musculação entrou na minha vida, desde a infância até a primeira academia e quem eu me tornei. Também mostro o meu **kit de treino** (músicas, alimentação, suplementos e exercícios favoritos) e as minhas **inspirações**.
+
+Quem cria uma conta pode jogar o **JumpGoat**, um minigame autoral sobre saúde. Cada partida fica salva no banco e aparece numa **dashboard** com recorde, média, gráficos e conquistas. O site também tem uma **calculadora de IMC** que guarda a ficha física do usuário.
 
 > [!NOTE]
-> O projeto está em desenvolvimento ativo. As telas são feitas do zero com HTML, CSS e JavaScript puros, e o cadastro e o login vão usar a API **web-data-viz** (Node.js) com banco **MySQL**.
+> As telas são feitas do zero com HTML, CSS e JavaScript puros. O back-end usa a API **web-data-viz** (Node.js + Express) com banco **MySQL**.
 
 ---
 
@@ -35,12 +37,13 @@ Nele eu conto como a musculação entrou na minha vida, o que ela me ensinou e q
 
 | | Tela | O que tem | Status |
 |:-:|---|---|:-:|
-| 🏋️ | **Meu hobby** | Minha história na musculação: como tudo começou, a primeira academia, os valores que levo além do treino, as dificuldades que superei e as minhas inspirações | ⚪ Planejado |
-| 🎮 | **Quiz GymFabs** | Mini game com visual arcade: tela inicial, perguntas de múltipla escolha sobre treino e tela de resultado com acertos x erros e desempenho por tema | ⚪ Planejado |
-| ⭐ | **Meus favoritos** | Músicas para treinar, o que eu como antes e depois do treino e a minha ficha de treino favorita | ⚪ Planejado |
-| ⚖️ | **Calculadora de IMC** | Recebe peso (kg) e altura (cm), calcula o IMC e mostra a faixa de classificação | 🟣 Em andamento |
-| 📝 | **Cadastro** | Nome, e-mail e senha, com validação de e-mail e medidor de força de senha em tempo real | 🟣 Em andamento |
-| 🔐 | **Login** | Acesso com o e-mail e a senha cadastrados | ⚪ Iniciado |
+| 🏠 | **Página inicial** | Minha história (como tudo começou, infância, primeira academia, quem eu me tornei), meu kit de treino, inspirações e parceiros de treino | 🟣 Em andamento |
+| 📝 | **Cadastro** | Nome, e-mail e senha, com validação de e-mail e medidor de força de senha em tempo real. Salva o usuário no banco | ✅ Funcionando |
+| 🔐 | **Login** | Autentica e-mail e senha no banco e guarda a sessão do usuário | ✅ Funcionando |
+| 🐐 | **JumpGoat: home** | Apresenta a história do jogo e leva para jogar ou para a dashboard | ✅ Funcionando |
+| 🎮 | **JumpGoat: jogo** | Minigame de pulo. O score de cada partida é salvo automaticamente | ✅ Funcionando |
+| 📊 | **Dashboard** | Recorde, média de score, total de partidas, conquistas por pontuação e gráficos das últimas 10 e das 5 melhores partidas | 🟣 Em andamento |
+| ⚖️ | **Calculadora de IMC** | Calcula o IMC, mostra a faixa de classificação, compara com o valor anterior e salva a **ficha física** (peso, altura e IMC) | ✅ Funcionando |
 
 <details>
 <summary><b>📝 Cadastro: medidor de força de senha</b></summary>
@@ -65,23 +68,119 @@ O e-mail é considerado válido quando contém `@` e `.`.
 
 </details>
 
+<details>
+<summary><b>⚖️ Calculadora de IMC: ficha física</b></summary>
+
+<br>
+
+- Ao abrir a página, os campos de **peso** e **altura** já vêm preenchidos com a ficha salva, e o último resultado aparece na tela.
+- Ao calcular, a página mostra a faixa (abaixo do peso, normal, sobrepeso ou obesidade) e se o IMC **subiu ▲** ou **baixou ▼**.
+- Ao clicar em **Atualizar ficha**, os dados são salvos. Cada usuário tem uma única ficha, que é atualizada a cada vez (relacionamento **1:1**).
+
+</details>
+
+---
+
+## ◆ JumpGoat
+
+> *"Saúde não é presente. É uma dívida. Se paga com suor, foco e disciplina. Não pagou? Vira Mollux."*
+
+Os **Mollux** deixaram os robôs fazerem tudo e perderam os músculos. Agora sobrevivem roubando a força dos outros, e o alvo é a **Luna**. O jogador ajuda a Luna a fugir, pulando cada obstáculo no caminho.
+
+O jogo é uma crítica ao **sedentarismo** e à **má alimentação**: quem treina e se cuida escapa desse destino.
+
+- **Como jogar:** clique em **START** e aperte qualquer tecla para pular.
+- **Score:** sobe enquanto a Luna continua correndo. Quando ela é pega, a partida termina e o score é salvo.
+- **Conquistas na dashboard:** Pegando o ritmo (500) · Aquecimento (1.000) · Em forma (3.000) · Anti-Mollux (5.000) · Cabra de aço (7.500) · Lenda da Luna (10.000)
+
+---
+
+## ◆ Banco de dados
+
+<div align="center">
+
+<img src="docs/modelagem-gymfabs.png" alt="Modelagem do banco de dados GymFabs" width="100%">
+
+</div>
+
+| Tabela | Relacionamento | Descrição |
+|---|---|---|
+| `usuario` | — | Contas criadas no cadastro (nome, e-mail único e senha) |
+| `partida` | **1:N** com `usuario` | Cada usuário joga várias partidas. Guarda o score e a data de cada uma |
+| `ficha_fisica` | **1:1** com `usuario` | Cada usuário tem no máximo uma ficha. A `fk_usuario` é **PK e FK ao mesmo tempo**, o que garante o 1:1 |
+
+O script completo está em [`src/database/script-tabelas.sql`](src/database/script-tabelas.sql).
+
+<details>
+<summary><b>🔌 Rotas da API</b></summary>
+
+<br>
+
+| Método | Rota | O que faz |
+|:-:|---|---|
+| `POST` | `/usuarios/cadastrar` | Cria um usuário |
+| `POST` | `/usuarios/autenticar` | Faz o login |
+| `POST` | `/partidas/salvar` | Salva o score de uma partida |
+| `GET` | `/partidas/kpis/:idUsuario` | Recorde, média e total de partidas |
+| `GET` | `/partidas/ultimas/:idUsuario` | Últimas 10 partidas (gráfico de evolução) |
+| `GET` | `/partidas/melhores/:idUsuario` | 5 melhores partidas |
+| `POST` | `/imc/salvar` | Cria ou atualiza a ficha física |
+| `GET` | `/imc/ficha/:idUsuario` | Busca a ficha física do usuário |
+
+</details>
+
 ---
 
 ## ◆ Tecnologias
 
-| Camada | Tecnologia | Uso | Status |
-|---|---|---|:-:|
-| Estrutura | ![HTML5](https://img.shields.io/badge/HTML5-120E18?style=flat-square&logo=html5&logoColor=C77DFF) | Todas as telas | ✅ Em uso |
-| Estilo | ![CSS3](https://img.shields.io/badge/CSS3-120E18?style=flat-square&logo=css&logoColor=C77DFF) | Visual das telas | ✅ Em uso |
-| Lógica | ![JavaScript](https://img.shields.io/badge/JavaScript-120E18?style=flat-square&logo=javascript&logoColor=C77DFF) | Validações, IMC e quiz | ✅ Em uso |
-| API | ![Node.js](https://img.shields.io/badge/Node.js-120E18?style=flat-square&logo=nodedotjs&logoColor=C77DFF) **web-data-viz** | Cadastro e login | 🔜 Planejado |
-| Banco de dados | ![MySQL](https://img.shields.io/badge/MySQL-120E18?style=flat-square&logo=mysql&logoColor=C77DFF) | Guardar os usuários cadastrados | 🔜 Planejado |
+| Camada | Tecnologia | Uso |
+|---|---|---|
+| Estrutura | ![HTML5](https://img.shields.io/badge/HTML5-120E18?style=flat-square&logo=html5&logoColor=C77DFF) | Todas as telas |
+| Estilo | ![CSS3](https://img.shields.io/badge/CSS3-120E18?style=flat-square&logo=css&logoColor=C77DFF) | Visual das telas e animações do jogo |
+| Lógica | ![JavaScript](https://img.shields.io/badge/JavaScript-120E18?style=flat-square&logo=javascript&logoColor=C77DFF) | Validações, IMC, JumpGoat e dashboard |
+| Gráficos | ![Chart.js](https://img.shields.io/badge/Chart.js-120E18?style=flat-square&logo=chartdotjs&logoColor=C77DFF) | Gráficos da dashboard |
+| API | ![Node.js](https://img.shields.io/badge/Node.js-120E18?style=flat-square&logo=nodedotjs&logoColor=C77DFF) ![Express](https://img.shields.io/badge/Express-120E18?style=flat-square&logo=express&logoColor=C77DFF) | Rotas de usuários, partidas e IMC (**web-data-viz**) |
+| Banco de dados | ![MySQL](https://img.shields.io/badge/MySQL-120E18?style=flat-square&logo=mysql&logoColor=C77DFF) | Usuários, partidas e fichas físicas |
+
+<details>
+<summary><b>🎨 Paleta de cores</b></summary>
+
+<br>
+
+<img src="public/assets/readme/paleta.svg" alt="Paleta de cores da GymFabs" width="100%">
+
+</details>
+
+<details>
+<summary><b>📁 Estrutura de pastas</b></summary>
+
+<br>
+
+```
+Projeto-individual---GymFabs/
+├── app.js                  # servidor Express
+├── docs/                   # imagem da modelagem do banco
+├── public/                 # telas do site
+│   ├── Index/              # página inicial
+│   ├── Pagina Login/       # cadastro e login
+│   ├── Jump-goat-home/     # home do JumpGoat
+│   ├── JumpGoat/           # o jogo
+│   ├── DashBoard/          # dashboard do jogador
+│   └── CalculadoraIMC/     # calculadora de IMC
+└── src/
+    ├── database/           # conexão e script SQL
+    ├── routes/             # rotas da API
+    ├── controllers/        # regras de cada rota
+    └── models/             # consultas ao banco
+```
+
+</details>
 
 ---
 
 ## ◆ Como rodar
 
-Por enquanto as telas são só HTML, CSS e JavaScript, então não precisa instalar nada.
+Você vai precisar do **Node.js** e do **MySQL** instalados.
 
 ```bash
 # 1. Clone o repositório
@@ -89,17 +188,37 @@ git clone https://github.com/oFabs-dev/Projeto-individual---GymFabs.git
 
 # 2. Entre na pasta
 cd Projeto-individual---GymFabs
+
+# 3. Instale as dependências
+npm install
 ```
 
-**3.** Abra o arquivo da tela que quiser no navegador:
+**4.** No MySQL, execute o script [`src/database/script-tabelas.sql`](src/database/script-tabelas.sql) para criar o banco `gymfabs` e as tabelas.
 
-- `CalculadoraIMC/calculadoraIMC.html`
-- `Pagina Login/cadastro.html`
-- `Pagina Login/login.html`
+**5.** Crie um arquivo `.env.dev` na raiz com os dados do seu banco:
 
+```env
+AMBIENTE_PROCESSO=desenvolvimento
 
+DB_HOST=localhost
+DB_DATABASE=gymfabs
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
+DB_PORT=3306
 
+APP_PORT=3333
+APP_HOST=localhost
+```
 
+**6.** Inicie o servidor:
+
+```bash
+npm start
+```
+
+**7.** Acesse `http://localhost:3333/Index/index.html` no navegador.
+
+---
 
 ## ◆ Autor
 

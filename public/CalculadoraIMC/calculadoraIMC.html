@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Calculador IMC</title>
+    <link rel="icon" href="../Index/img/favicon-32.png">
   </head>
   <body>
     <header>
@@ -47,7 +48,7 @@
             <p id="comparacao">Calcule seu IMC para comparar</p>
             <p id="mensagem_salvar"></p>
           </div>
-          <button class="salvar" onclick="salvar()">Salvar meu IMC</button>
+          <button class="salvar" onclick="salvar()">Atualizar ficha</button>
         </div>
       </div>
     </main>
@@ -62,16 +63,31 @@
       let imcAtual = 0;
       let diaAnterior = "";
 
+      let pesoAtual = 0;
+      let alturaAtual = 0;
+
+      // Ao abrir a página, carrega a ficha física do usuário (se existir)
       if (idUsuario != null) {
-        fetch(`/imc/ultimo/${idUsuario}`)
+        fetch(`/imc/ficha/${idUsuario}`)
           .then(function (resposta) {
             return resposta.json();
           })
           .then(function (dados) {
             if (dados.length > 0) {
-              imcAnterior = Number(dados[0].imc);
-              diaAnterior = `em ${dados[0].dia}`;
-              comparacao.innerHTML = `Último: <b>${imcAnterior.toFixed(2)}</b> ${diaAnterior}`;
+              let ficha = dados[0];
+
+              // Preenche os campos com os dados salvos
+              ipt_peso.value = Number(ficha.peso);
+              ipt_altura.value = ficha.altura;
+
+              // Mostra o resultado salvo, sem precisar clicar em calcular
+              imcAnterior = Number(ficha.imc);
+              imcAtual = imcAnterior;
+              diaAnterior = `em ${ficha.dia}`;
+              valor_imc.innerHTML = imcAtual.toFixed(2);
+              mostrarClassificacao();
+
+              comparacao.innerHTML = `Sua ficha: <b>${Number(ficha.peso)}kg · ${ficha.altura}cm</b> · atualizada ${diaAnterior}`;
             }
           });
       }
@@ -84,6 +100,8 @@
         if (peso > 0 && altura > 0) {
           valor_imc.innerHTML = imc.toFixed(2);
           imcAtual = Number(imc.toFixed(2));
+          pesoAtual = peso;
+          alturaAtual = Number(ipt_altura.value);
           mostrarClassificacao();
           comparar();
         } else {
@@ -136,7 +154,7 @@
       function salvar() {
         if (idUsuario == null) {
           mensagem_salvar.innerHTML = "Faça login para salvar";
-        } else if (imcAtual == 0) {
+        } else if (pesoAtual == 0) {
           mensagem_salvar.innerHTML = "Calcule seu IMC primeiro";
         } else {
           fetch("/imc/salvar", {
@@ -144,12 +162,18 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               idUsuarioServer: idUsuario,
+              pesoServer: pesoAtual,
+              alturaServer: alturaAtual,
               imcServer: imcAtual,
             }),
-          }).then(function () {
-            mensagem_salvar.innerHTML = "✓ IMC salvo!";
-            imcAnterior = imcAtual;
-            comparacao.innerHTML = `Último: <b>${imcAnterior.toFixed(2)}</b>`;
+          }).then(function (resposta) {
+            if (resposta.ok) {
+              mensagem_salvar.innerHTML = "✓ Ficha atualizada!";
+              imcAnterior = imcAtual;
+              comparacao.innerHTML = `Sua ficha: <b>${pesoAtual}kg · ${alturaAtual}cm</b> · atualizada agora`;
+            } else {
+              mensagem_salvar.innerHTML = "Erro ao salvar a ficha";
+            }
           });
         }
       }

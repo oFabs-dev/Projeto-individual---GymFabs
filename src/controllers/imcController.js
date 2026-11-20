@@ -2,10 +2,17 @@ var imcModel = require("../models/imcModel");
 
 function salvar(req, res) {
   var idUsuario = req.body.idUsuarioServer;
+  var peso = req.body.pesoServer;
+  var altura = req.body.alturaServer;
   var imc = req.body.imcServer;
 
+  if (idUsuario == undefined || peso == undefined || altura == undefined || imc == undefined) {
+    res.status(400).send("Dados da ficha incompletos!");
+    return;
+  }
+
   imcModel
-    .salvar(idUsuario, imc)
+    .salvar(idUsuario, peso, altura, imc)
     .then(function (resultado) {
       res.json(resultado);
     })
@@ -15,11 +22,11 @@ function salvar(req, res) {
     });
 }
 
-function buscarUltimo(req, res) {
+function buscarFicha(req, res) {
   var idUsuario = req.params.idUsuario;
 
   imcModel
-    .buscarUltimo(idUsuario)
+    .buscarFicha(idUsuario)
     .then(function (resultado) {
       res.json(resultado);
     })
@@ -29,4 +36,4 @@ function buscarUltimo(req, res) {
     });
 }
 
-module.exports = { salvar, buscarUltimo };
+module.exports = { salvar, buscarFicha };

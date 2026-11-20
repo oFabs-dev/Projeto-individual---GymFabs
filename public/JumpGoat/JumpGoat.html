@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JumpGoat</title>
+    <link rel="icon" href="../Index/img/favicon-32.png">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <a href="../Jump-goat-home/JumpGoat-home.html" class="voltar"><--</a>
+
     <div class="gameBoard">
       <img src="img/luna_correndo.gif" class="luna" />
       <img src="img/latinha.gif" class="latinha" />
@@ -35,7 +38,7 @@
 
         // 3. Ligar a latinha
         latinha.classList.add("andando");
-
+ 
         document.addEventListener("keydown", pulo);
 
         function pulo() {

@@ -25,12 +25,17 @@ CREATE TABLE partida (
 	CONSTRAINT fk_partida_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
-CREATE TABLE registro_imc (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	fk_usuario INT NOT NULL,
+
+
+-- Relacionamento 1-1: cada usuário tem no máximo UMA ficha física.
+-- A PK é a própria FK, então o banco não deixa existir duas fichas para o mesmo usuário.
+CREATE TABLE ficha_fisica (
+	fk_usuario INT PRIMARY KEY,
+	peso DECIMAL(5,2) NOT NULL,      -- em kg
+	altura INT NOT NULL,             -- em cm
 	imc DECIMAL(5,2) NOT NULL,
-	dt_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
-	CONSTRAINT fk_imc_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+	dt_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT fk_ficha_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id)  
 );
 
 

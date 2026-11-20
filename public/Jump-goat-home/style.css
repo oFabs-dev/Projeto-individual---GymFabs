@@ -45,10 +45,20 @@ width: 170px;
 color: var(--texto-apagado);
 }
 
-.play a{
+.link_voltar {
+  padding: 10px 20px;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  color: var(--texto-apagado);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
 
-text-decoration: none;
-color: var(--texto-apagado);
+.link_voltar:hover {
+  border-color: var(--roxo);
+  color: var(--texto);
 }
 
 .hero{
@@ -90,12 +100,42 @@ gap: 15px;
   max-width: 500px;
 }
 
-.play{
-display: flex;
-border: solid 1px var(--roxo);
-border-radius: 999px;
-padding: 10px 20px;
+.botoes {
+  display: flex;
+  gap: 16px;
+}
 
+.play,
+.dash {
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* botão principal: roxo cheio */
+.play {
+  background-color: var(--roxo);
+  border: 1px solid var(--roxo);
+  color: var(--texto);
+  box-shadow: 0 0 30px rgba(123, 44, 191, 0.4);
+}
+
+.play:hover {
+  background-color: var(--roxo-claro);
+  border-color: var(--roxo-claro);
+}
+
+/* botão secundário: só a borda */
+.dash {
+  border: 1px solid var(--roxo);
+  color: var(--roxo-claro);
+}
+
+.dash:hover {
+  background-color: rgba(123, 44, 191, 0.25);
+  color: var(--texto);
 }
 
 .selo{
